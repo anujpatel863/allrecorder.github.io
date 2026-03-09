@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllRecorder - Your Offline AI Audio Companion</title>
+    <meta name="description" content="AllRecorder: The ultimate offline-first recording and transcription app powered by On-Device AI.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --bg: #0F172A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --card-bg: #1E293B;
+            --card-border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818CF8, #C084FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        .hero {
+            padding: 8rem 5% 6rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F8FAFC, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #F8FAFC;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 5% 3rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #818CF8;
+            text-decoration: underline;
+        }
+        
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .hero { padding: 5rem 5% 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AllRecorder</div>
+        <nav>
+            <a href="#features">Features</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Your Audio, Transcribed Locally.</h1>
+            <p>The ultimate offline-first recording app powered by On-Device AI. Safe, secure, and entirely private.</p>
+            <a href="#download" class="cta-button">Coming Soon</a>
+        </section>
+
+        <section id="features" class="features">
+            <div class="feature-card">
+                <h3>Offline-First AI</h3>
+                <p>Convert speech to text and generate summaries entirely on your phone. No internet connection required, meaning absolute privacy.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Absolute Privacy</h3>
+                <p>Your raw audio, transcripts, and metadata remain strictly on your device. Nothing is ever uploaded to a remote server for analysis.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Smart Audio Tools</h3>
+                <p>Leverage local machine learning for advanced features like silence removal, speaker identification, and deep semantic search.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AllRecorder. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="privacy_policy.html">Privacy Policy</a>
+            <a href="mailto:patelanuj863@gmail.com">Contact Us</a>
+        </div>
+    </footer>
+
+</body>
+</html>
