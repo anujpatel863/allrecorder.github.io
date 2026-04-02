@@ -22,27 +22,27 @@
 
     <h2>1. Introduction</h2>
     <p>AllRecorder ("we," "our," or "us") respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how our mobile application collects, uses, and safeguards your data.</p>
-    <p>AllRecorder is designed with an <span class="strong">offline-first approach</span> for its core recording and transcription features. We prioritize your privacy by processing sensitive audio data directly on your device using <span class="strong">On-Device Artificial Intelligence (AI)</span>.</p>
+    <p>AllRecorder is designed with an <span class="strong">offline-first approach</span> for its core recording and transcription features. We prioritize your privacy by processing sensitive media (audio & video) data directly on your device using <span class="strong">On-Device Artificial Intelligence (AI)</span>.</p>
 
     <h2>2. Information We Collect and Permissions</h2>
     <p>To provide our services, we require specific permissions on your Android device. We do not sell your personal data to third parties.</p>
 
     <ul>
-        <li><span class="strong">Microphone (<code>RECORD_AUDIO</code>)</span>
+        <li><span class="strong">Microphone (<code>RECORD_AUDIO</code>) &amp; Camera (<code>CAMERA</code>)</span>
             <ul>
-                <li><span class="strong">Why we need it:</span> To record audio for your notes, meetings, and lectures.</li>
-                <li><span class="strong">How it is used:</span> Audio data is captured and written directly to your device’s local storage. It is processed locally by our transcription engine. We do not listen to your recordings, and they are never uploaded to our servers.</li>
+                <li><span class="strong">Why we need it:</span> To record audio and video for your notes, meetings, and lectures.</li>
+                <li><span class="strong">How it is used:</span> Audio and video data are captured and written directly to your device’s local storage. Data is processed locally by our transcription engine. We do not listen to or view your recordings, and they are never uploaded to our servers.</li>
             </ul>
         </li>
-        <li><span class="strong">Storage (<code>READ_MEDIA_AUDIO</code>, <code>READ_EXTERNAL_STORAGE</code>)</span>
+        <li><span class="strong">Storage (<code>READ_MEDIA_AUDIO</code>, <code>READ_MEDIA_VIDEO</code>, <code>READ_EXTERNAL_STORAGE</code>)</span>
             <ul>
-                <li><span class="strong">Why we need it:</span> To save your recordings, allow you to import audio files, and scan specific <span class="strong">"Watched Folders"</span> for new content.</li>
+                <li><span class="strong">Why we need it:</span> To save your recordings, allow you to import audio and video files, and scan specific <span class="strong">"Watched Folders"</span> for new content.</li>
                 <li><span class="strong">How it is used:</span> We only access files you explicitly create within the app, select for import, or place in folders you have designated for automatic scanning.</li>
             </ul>
         </li>
         <li><span class="strong">Notifications (<code>POST_NOTIFICATIONS</code>)</span>
             <ul>
-                <li><span class="strong">Why we need it:</span> To display a persistent notification while recording or processing audio, ensuring you are always aware of active background tasks.</li>
+                <li><span class="strong">Why we need it:</span> To display a persistent notification while recording or processing media, ensuring you are always aware of active background tasks.</li>
             </ul>
         </li>
         <li><span class="strong">Biometrics / App Lock</span>
@@ -56,17 +56,17 @@
     <h2>3. On-Device AI and Local Processing</h2>
     <p>AllRecorder utilizes powerful local processing technologies to deliver advanced features without compromising the privacy of your recordings:</p>
     <ul>
-        <li><span class="strong">Transcription & Summarization:</span> We use high-performance on-device AI models to convert speech to text and generate summaries. This processing happens entirely on your phone.</li>
-        <li><span class="strong">Audio Intelligence:</span> Features like <span class="strong">Silence Removal</span> and <span class="strong">Speaker Identification</span> are powered by local machine learning algorithms that analyze audio patterns directly on your device.</li>
+        <li><span class="strong">Transcription & Summarization:</span> We use high-performance on-device AI models to convert speech to text and generate summaries from your audio and video. This processing happens entirely on your phone.</li>
+        <li><span class="strong">Media Intelligence:</span> Features like <span class="strong">Silence Removal</span> and <span class="strong">Speaker Identification</span> are powered by local machine learning algorithms that analyze audio patterns directly on your device.</li>
         <li><span class="strong">Voice Tools:</span> Our <span class="strong">Voice Changer</span> and <span class="strong">Text-to-Speech (TTS)</span> features utilize local audio synthesis and processing engines.</li>
         <li><span class="strong">Smart Search:</span> We employ local embedding models to enable <span class="strong">Semantic Search</span>, allowing you to find recordings by their meaning rather than just keywords.</li>
     </ul>
-    <p><span class="strong">Data Safety:</span> Because all audio processing happens on your phone, your raw audio, transcripts, and generated metadata remain in your control. They are <span class="strong">not</span> sent to any remote server for analysis.</p>
+    <p><span class="strong">Data Safety:</span> Because all processing happens on your phone, your raw media (audio/video), transcripts, and generated metadata remain in your control. They are <span class="strong">not</span> sent to any remote server for analysis.</p>
 
     <h2>4. Authentication, Analytics, and Internet Usage</h2>
     <p>While core processing is offline, AllRecorder uses the internet for the following features:</p>
     <ul>
-        <li><span class="strong">Analytics & Crash Reporting:</span> We use Firebase Analytics and crash reporting tools to understand how users interact with our app and to diagnose technical issues. This helps us identify bugs and improve features. This data is aggregated and does not include any of your audio recordings or transcripts.</li>
+        <li><span class="strong">Analytics & Crash Reporting:</span> We use Firebase Analytics and crash reporting tools to understand how users interact with our app and to diagnose technical issues. This helps us identify bugs and improve features. This data is aggregated and does not include any of your audio/video recordings or transcripts.</li>
         <li><span class="strong">In-App Purchases:</span> We use Google Play Billing to process payments for premium features. Payment information is handled entirely by Google Play; we do not collect or store your payment details.</li>
         <li><span class="strong">Resource Downloads:</span> The app connects to the internet to download necessary runtime components, such as AI model weights or voice packages, from public repositories.</li>
     </ul>
