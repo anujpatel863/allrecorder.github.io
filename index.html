@@ -1,211 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AllRecorder - Your Offline AI Audio Companion</title>
-    <meta name="description" content="AllRecorder: The ultimate offline-first recording and transcription app powered by On-Device AI.">
+    <title>AllRecorder - Your Offline AI Video & Audio Companion</title>
+    <meta name="description" content="AllRecorder: The ultimate offline-first video and audio recording app powered by On-Device AI.">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #4F46E5;
-            --primary-dark: #4338CA;
-            --bg: #0F172A;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --card-bg: #1E293B;
-            --card-border: #334155;
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Config tailwind and global CSS variables -->
+    <script>
+        // Mapping Tailwind colors to CSS variables to easily support light/dark modes
+        // FIX: Ensure global colors use CSS variables to support color schemes dynamically.
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--primary)',
+                        'primary-dark': 'var(--primary-dark)',
+                        bg: 'var(--bg)',
+                        'text-main': 'var(--text-main)',
+                        'text-muted': 'var(--text-muted)',
+                        'card-bg': 'var(--card-bg)',
+                        'card-border': 'var(--card-border)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
         }
+    </script>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+    <style>
+        /* 
+         * Using CSS variables for colors as requested by global rule.
+         * Defaulting to light theme.
+         */
+        :root {
+            --primary: #4F46E5;      /* Indigo 600 */
+            --primary-dark: #4338CA; /* Indigo 700 */
+            --bg: #F8FAFC;           /* Slate 50 - Light theme background */
+            --text-main: #0F172A;    /* Slate 900 - Dark text for light theme */
+            --text-muted: #475569;   /* Slate 600 */
+            --card-bg: #FFFFFF;      /* White */
+            --card-border: #E2E8F0;  /* Slate 200 */
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #818CF8, #C084FC);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        .hero {
-            padding: 8rem 5% 6rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #F8FAFC, #94A3B8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
-        }
-
-        .cta-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 1rem;
-            padding: 2.5rem 2rem;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #F8FAFC;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-        }
-
-        footer {
-            text-align: center;
-            padding: 4rem 5% 3rem;
-            margin-top: 4rem;
-            border-top: 1px solid var(--card-border);
-            color: var(--text-muted);
-        }
-
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #818CF8;
-            text-decoration: underline;
-        }
-        
-        .footer-links {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .hero { padding: 5rem 5% 4rem; }
-        }
+        /* Utility classes for animations */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .opacity-0 { opacity: 0; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col font-sans selection:bg-indigo-100 selection:text-indigo-900">
 
-    <header>
-        <div class="logo">AllRecorder</div>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 flex justify-between items-center py-5 px-6 md:px-12 bg-bg/80 backdrop-blur-md border-b border-card-border shadow-sm">
+        <div class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+            AllRecorder
+        </div>
         <nav>
-            <a href="#features">Features</a>
+            <a href="#features" class="text-text-muted hover:text-text-main font-semibold transition-colors duration-200">Features</a>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Your Audio, Transcribed Locally.</h1>
-            <p>The ultimate offline-first recording app powered by On-Device AI. Safe, secure, and entirely private.</p>
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="text-center max-w-5xl mx-auto pt-24 pb-20 px-6 md:pt-36 md:pb-28">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-primary font-semibold text-sm animate-fade-in-up">
+                On-Device Privacy Meets AI
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-800 to-slate-500 animate-fade-in-up delay-100 opacity-0">
+                Your Videos,<br/>Transcribed Locally.
+            </h1>
+            <p class="text-lg md:text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-200 opacity-0">
+                The ultimate offline-first video and audio recording app powered by On-Device AI. Safe, secure, and entirely private. Your media stays with you.
+            </p>
             
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up delay-300 opacity-0">
+                <!-- Play Store Link added per user request -->
+                <a href="https://play.google.com/store/apps/details?id=com.recorder.allrecorder" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full sm:w-auto justify-center border border-slate-700">
+                    <svg class="w-8 h-8 text-green-400 group-hover:scale-110 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                    </svg>
+                    <div class="flex flex-col items-start leading-none text-left">
+                        <span class="text-[10px] text-slate-300 font-normal uppercase tracking-wider mb-1">Get it on</span>
+                        <span class="text-xl">Google Play</span>
+                    </div>
+                </a>
+            </div>
         </section>
 
-        <section id="features" class="features">
-            <div class="feature-card">
-                <h3>Offline-First AI</h3>
-                <p>Convert speech to text and generate summaries entirely on your phone. No internet connection required, meaning absolute privacy.</p>
+        <!-- Features Section -->
+        <section id="features" class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-12 max-w-7xl mx-auto py-16">
+            <!-- Feature 1 -->
+            <div class="bg-card-bg border border-card-border p-8 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-indigo-100">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-text-main">Offline-First AI</h3>
+                <p class="text-text-muted leading-relaxed">
+                    Convert speech from your videos and audio to text entirely on your phone. No internet connection required, meaning absolute privacy.
+                </p>
             </div>
-            <div class="feature-card">
-                <h3>Absolute Privacy</h3>
-                <p>Your raw audio, transcripts, and metadata remain strictly on your device. Nothing is ever uploaded to a remote server for analysis.</p>
+            
+            <!-- Feature 2 -->
+            <div class="bg-card-bg border border-card-border p-8 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-indigo-100">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-text-main">Absolute Privacy</h3>
+                <p class="text-text-muted leading-relaxed">
+                    Your videos, raw audio, transcripts, and metadata remain strictly on your device. Nothing is ever uploaded to a remote server for analysis.
+                </p>
             </div>
-            <div class="feature-card">
-                <h3>Smart Audio Tools</h3>
-                <p>Leverage local machine learning for advanced features like silence removal, speaker identification, and deep semantic search.</p>
+            
+            <!-- Feature 3 -->
+            <div class="bg-card-bg border border-card-border p-8 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-indigo-100">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-text-main">Smart Media Tools</h3>
+                <p class="text-text-muted leading-relaxed">
+                    Leverage local machine learning for advanced features like silence removal, speaker identification, video processing, and deep semantic search.
+                </p>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 AllRecorder. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="mailto:patelanuj863@gmail.com">Contact Us</a>
+    <!-- Footer -->
+    <footer class="text-center py-12 mt-12 border-t border-card-border bg-card-bg">
+        <p class="text-text-muted font-medium">&copy; 2026 AllRecorder. All rights reserved.</p>
+        <div class="flex justify-center gap-8 mt-6">
+            <a href="privacy_policy.html" class="text-primary font-medium hover:text-primary-dark hover:underline transition-all">Privacy Policy</a>
+            <a href="mailto:patelanuj863@gmail.com" class="text-primary font-medium hover:text-primary-dark hover:underline transition-all">Contact Us</a>
         </div>
     </footer>
 
 </body>
 </html>
-
